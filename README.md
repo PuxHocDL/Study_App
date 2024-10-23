@@ -44,8 +44,9 @@ Tải về file tokenizer.json và thiết lập biến môi trường TOKENIZER
 + Mistral-7B-v0.1/tokenizer.json
 
 ### TailwindCSS
+Install TailwindCSS with 
 ```bash
-Install TailwindCSS with npm install -D tailwindcss.
+npm install -D tailwindcss
 ```
 ### Thực thi
 
