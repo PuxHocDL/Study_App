@@ -26,7 +26,6 @@ cargo install trunk (optional!)
 
 ### Hardware
 
-- For CUDA, add the cuda feature for candle_core in Cargo.toml.
 - Về CUDA, thêm thuộc tính CUDA vào Cargo.toml:
 ```bash
 candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.6.0", optional = true, features = ["cuda"] }
@@ -66,4 +65,5 @@ npx tailwindcss -i ./input.css -o ./style/output.css
 cargo leptos serve --release
 ```
 
-4.Mở trang local để chạy: [http://localhost:3000/?](http://localhost:3000/?)
+4.Mở trang local để chạy:
+[http://localhost:3000/?](http://localhost:3000/?)
