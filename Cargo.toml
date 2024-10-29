@@ -27,15 +27,16 @@ actix-rt = { version = "2.9.0", optional = true }
 futures = { version = "0.3.30", optional = true }
 tokio = "1.37.0"
 
-candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.6.0", optional = true }
-candle-examples = { git = "https://github.com/huggingface/candle.git", version = "0.6.0", optional = true }
-candle-transformers = { git = "https://github.com/huggingface/candle.git", version = "0.6.0", optional = true }
+candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.7.2", optional = true, features = ["cuda"] }
+candle-examples = { git = "https://github.com/huggingface/candle.git", version = "0.7.2", optional = true, features = ["cuda"] }
+candle-transformers = { git = "https://github.com/huggingface/candle.git", version = "0.7.2", optional = true, features = ["cuda"] }
 tokenizers = { version = "0.19.1", optional = true }
 
 anyhow = "1.0.82"
 fastrand = { version = "2.1.0", optional = true }
 dotenv = { version = "0.15.0", optional = true }
 env_logger = "0.11.3"
+cudarc = { version = "0.12.1", default-features = false, features = ["cuda-version-from-build-system"] }
 
 [features]
 csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
