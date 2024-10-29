@@ -8,19 +8,28 @@ use leptos_meta::*;
 mod components;
 use components::chat_area::ChatArea;
 use components::type_area::TypeArea;
-
+use components::chat_area::OtherChatArea;
 use crate::model::conversation::{Conversation, Message};
 
 #[component]
 pub fn App() -> impl IntoView {
     provide_meta_context();
     let (conversation, set_conversation) = create_signal(Conversation::new());
+    let (current_chatbot, set_current_chatbot) = create_signal("chatbot_1".to_string());
 
     use futures::{SinkExt, StreamExt};
     use gloo_net::websocket::{futures::WebSocket, Message::Text};
 
     let client: Rc<RefCell<Option<SplitSink<WebSocket, gloo_net::websocket::Message>>>> =
         Default::default();
+
+    // Chỉnh sửa closure của change_chatbot để trả về Future
+    let change_chatbot = create_action(move |new_chatbot: &String| {
+        let new_chatbot = new_chatbot.clone();
+        async move {
+            set_current_chatbot(new_chatbot);
+        }
+    });
 
     let client_clone = client.clone();
     create_effect(move |_| {
@@ -90,7 +99,29 @@ pub fn App() -> impl IntoView {
     view! {
         <Stylesheet id="leptos" href="/pkg/candlemist.css"/>
         <Title text="CandleMist"/>
-        <ChatArea conversation/>
-        <TypeArea send/>
+
+        // Thêm các nút điều hướng
+        <div class="nav-buttons">
+            <button on:click=move |_| change_chatbot.dispatch("chatbot_1".to_string())>
+                "Chatbot 1"
+            </button>
+            <button on:click=move |_| change_chatbot.dispatch("chatbot_2".to_string())>
+                "Chatbot 2"
+            </button>
+        </div>
+
+        // Điều hướng giữa các chatbot
+        { move || match current_chatbot.get().as_str() {
+            "chatbot_1" => view! {
+                <ChatArea conversation/>
+                <TypeArea send/>
+            }.into_view(),
+            "chatbot_2" => view! {
+                <OtherChatArea/> // Chatbot khác
+            }.into_view(),
+            _ => view! {
+                <div>"Không có chatbot nào được chọn"</div>
+            }.into_view(),
+        }}
     }
 }

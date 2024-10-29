@@ -56,3 +56,15 @@ pub fn ChatArea(conversation: ReadSignal<Conversation>) -> impl IntoView {
         </div>
     }
 }
+
+
+#[component]
+pub fn OtherChatArea() -> impl IntoView {
+    view! {
+        <div class="other-chat-area">
+            <h2>"Chatbot 2"</h2>
+            <p>"Đây là giao diện của Chatbot 2."</p>
+            // Thêm các thành phần cần thiết cho Chatbot 2
+        </div>
+    }
+}

@@ -26,7 +26,6 @@ cargo install trunk (optional!)
 
 ### Hardware
 
-- For CUDA, add the cuda feature for candle_core in Cargo.toml.
 - Về CUDA, thêm thuộc tính CUDA vào Cargo.toml:
 ```bash
 candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.6.0", optional = true, features = ["cuda"] }
@@ -44,8 +43,9 @@ Tải về file tokenizer.json và thiết lập biến môi trường TOKENIZER
 + Mistral-7B-v0.1/tokenizer.json
 
 ### TailwindCSS
+Install TailwindCSS with 
 ```bash
-Install TailwindCSS with npm install -D tailwindcss.
+npm install -D tailwindcss
 ```
 ### Thực thi
 
@@ -65,4 +65,5 @@ npx tailwindcss -i ./input.css -o ./style/output.css
 cargo leptos serve --release
 ```
 
-4.Mở trang local để chạy: [http://localhost:3000/?](http://localhost:3000/?)
+4.Mở trang local để chạy:
+[http://localhost:3000/?](http://localhost:3000/?)
